@@ -18,39 +18,56 @@ void        ft_error(char *str)
   exit(1);
 }
 
+static struct s_list *set_a_node(char **buf, int len, struct s_list *list)
+{
+  if (!list)
+  {
+    ft_putendl("premier maillon");
+  }
+  (void)*buf;
+  (void)len;
+  return (list);
+}
+
 static void ft_check_buf(char *buf)
 {
   int i;
   char **split_buf;
+  struct s_list *list;
 
   i = 0;
-  while (str[i])
+  while (buf[i])
   {
-    if (str[i] != '#' || str[i] || '.')
+    if (buf[i] != '#' && buf[i] != '.' && buf[i] != '\n')
       ft_error("Invalid character in file.");
     i++;
   }
-  split_buf = ft_strplit(str, '\n');
+  split_buf = ft_strsplit(buf, '\n');
   i = 0;
   while (split_buf[i])
   {
-    if ();
+    if (i % 5 == 0)
+      list = set_a_node(split_buf, i, list);
     i++;
   }
 }
 
 static void  ft_open_file(char *name_file)
 {
-  int fd;
-  size_t size;
+  int     fd;
+  size_t  size;
   char    buf[MAX_CHAR + 2];
+
 
   if ((fd = open(name_file, O_RDONLY)) == -1)
     ft_error("file does not exist.");
   if ((size = read(fd, buf, MAX_CHAR + 2)) <= 0 || size > MAX_CHAR)
-    ft_error("file does not valid.");
-  if (size + 1 % 21 != 0)
-    ft_error("file does not valid.");
+    ft_error("file does not valid. MAX_CHAR");
+
+  printf("size lus = %lu\n", size); // a supp
+
+  if ((size + 1) % 21 != 0)
+    ft_error("file does not valid. MODULO");
   buf[size + 1] = '\0';
   ft_check_buf(buf);
 }

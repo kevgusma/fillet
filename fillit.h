@@ -18,6 +18,7 @@
 # include "libft/libft.h"
 # include <sys/types.h>
 # include <sys/uio.h>
+# include <stdio.h>
 
 # define MAX_CHAR 545
 # define FILLIT_H
@@ -26,6 +27,7 @@ typedef struct  s_list
 {
   char          **jeton;
   char          id;
+  int           flag;
   struct s_list *next;
   struct s_list *prev;
 }               t_list;

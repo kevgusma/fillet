@@ -18,7 +18,7 @@ void        ft_error(char *str)
   exit(1);
 }
 
-static struct s_list *set_a_node(char **buf, int len, struct s_list *list)
+ struct s_list *set_a_node(char **buf, int len, struct s_list *list)
 {
   if (!list)
   {
@@ -33,28 +33,23 @@ static struct s_list *set_a_node(char **buf, int len, struct s_list *list)
 
 static void ft_check_buf(char *buf)
 {
-  int i;
-  int j;
-  char **split_buf;
-  struct s_list *list;
+  int i; // c'est l'emplacement d'un caractere
+  int j; // egale le nombre de caractere
+  //char **split_buf;
+  //struct s_list *list;
 
   i = 0;
-  j = 0;
+  j = 1;
   while (buf[i])
   {
     if (buf[i] != '#' && buf[i] != '.' && buf[i] != '\n')
       ft_error("Invalid character in file.");
-    if (i > 0 && (j % 21) == 0 && buf[j] != '\n')
-    {
-      printf("buf[i] = %c \n", buf[i - 1]);
-      printf("i = %d\n", i);
+    if ((j % 21) == 0 && (buf[i] != '\n' || buf[i - 1] != '\n')) // si c'est un '\n' on ne rentre pas dans cette condition
       ft_error("file does not valid.");
-    }
     j++;
     i++;
   }
-
-
+/*
   split_buf = ft_strsplit(buf, '\n');
   i = 0;
   list = NULL;
@@ -66,7 +61,7 @@ static void ft_check_buf(char *buf)
     if (i % 5 == 0)
       list = set_a_node(split_buf, i, list);
     i++;
-  }
+  }*/
 }
 
 static void  ft_open_file(char *name_file)

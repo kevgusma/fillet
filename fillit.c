@@ -22,19 +22,45 @@ void        ft_error(char *str)
 // pour le mettre dans un autre
 // mettre cette fonction dans la libft
 
-char           *check_jeton(char **buf)
+void check_jeton(char **buf)
 {
-  int   nb_#;
+  int   nb_hashtag;
   int   i;
   int   j;
+  int   total;
 
+  nb_hashtag = 0;
+  total = 0;
+  i = 0;
   while (i < 4)
   {
-    
-    if (nb_# > 4)
-      ft_error("Invalid jeton in file");
+    j = 0;
+    while (buf[i][j])
+    {
+      if (buf[i][j] == '#')
+      {
+        ft_putendl("on as trouver le #");
+        if (j < 3 && buf[i][j + 1] && buf[i][j + 1] == '#')
+          total++;
+          ft_putendl("coucou");
+        if (i < 3 && buf[i + 1][j] && buf[i + 1][j] == '#')
+          total++;
+          ft_putendl("coucou 2");
+        if (j > 0 && buf[i][j - 1] && buf[i][j - 1] == '#')
+          total++;
+          ft_putendl("coucou 3");
+        if (i > 0 && buf[i - 1][j] && buf[i - 1][j] == '#')
+          total++;
+          ft_putendl("coucou 4");
+        nb_hashtag++;
+      }
+      j++;
+    }
+    if (nb_hashtag > 4)
+      ft_error("Invalid # in file.");
     i++;
   }
+  printf("total = %d\n", total);
   /*
     si un caractere sur la ligne : tester si les autres caracteres sont a i=
     et a j+
@@ -46,7 +72,7 @@ char           *check_jeton(char **buf)
   */
 }
 
- struct s_list *set_a_node(char **buf, struct s_list *list)
+/* struct s_list *set_a_node(char **buf, struct s_list *list)
 {
   if (!list)
   {
@@ -58,7 +84,7 @@ char           *check_jeton(char **buf)
       ft_error("Invalid jeton in file.");
   }
   return (list);
-}
+}*/
 
 static void ft_check_buf(char *buf)
 {
@@ -90,7 +116,8 @@ static void ft_check_buf(char *buf)
     // sauf pour la derniere piece a part si le split a rajouter un '\n' a la fin
 
     if (i % 4 == 0) // modulo de ZERO = ZERO !!!!!!!!!!!!!!
-      list = set_a_node(&split_buf[i], list);
+      check_jeton(&split_buf[i]);
+      //list = set_a_node(&split_buf[i], list);
     i++;
   }
 }

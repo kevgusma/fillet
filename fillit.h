@@ -32,4 +32,7 @@ typedef struct  s_list
   struct s_list *prev;
 }               t_list;
 
+void  ft_check_buf(char *buf);
+void        ft_error(char *str);
+
 #endif

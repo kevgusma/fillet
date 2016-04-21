@@ -14,7 +14,7 @@ NAME = fillit
 
 FLAG = -Wall -Werror -Wextra
 
-SRC = fillit.c
+SRC = fillit.c parsing.c
 
 LIB = libft
 
@@ -41,7 +41,7 @@ $(LIBA):
 
 clean:
 		rm -f $(OBJ)
-		
+
 fclean: clean
 		rm -f $(NAME) $(MALLIB)
 

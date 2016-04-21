@@ -21,7 +21,7 @@ void        ft_error(char *str)
 // penser a faire une fonction qui sub une partie d'un tab
 // pour le mettre dans un autre
 // mettre cette fonction dans la libft
-
+/*
 void check_jeton(char **buf)
 {
   int   nb_hashtag;
@@ -39,19 +39,14 @@ void check_jeton(char **buf)
     {
       if (buf[i][j] == '#')
       {
-        ft_putendl("on as trouver le #");
         if (j < 3 && buf[i][j + 1] && buf[i][j + 1] == '#')
           total++;
-          ft_putendl("coucou");
         if (i < 3 && buf[i + 1][j] && buf[i + 1][j] == '#')
           total++;
-          ft_putendl("coucou 2");
         if (j > 0 && buf[i][j - 1] && buf[i][j - 1] == '#')
           total++;
-          ft_putendl("coucou 3");
         if (i > 0 && buf[i - 1][j] && buf[i - 1][j] == '#')
           total++;
-          ft_putendl("coucou 4");
         nb_hashtag++;
       }
       j++;
@@ -60,8 +55,10 @@ void check_jeton(char **buf)
       ft_error("Invalid # in file.");
     i++;
   }
+  if (total > 5)
+    return (NULL);
   printf("total = %d\n", total);
-  /*
+
     si un caractere sur la ligne : tester si les autres caracteres sont a i=
     et a j+
     si 4 caracteres sur la ligne : tester si aucun autre caractere dans le jeton
@@ -69,9 +66,9 @@ void check_jeton(char **buf)
       option 1: + tester # en i= ou i++ et j+
       option 2 : + tester si ## en i+ et j+
     variable qui compte le nombre de #
-  */
-}
 
+}
+*/
 /* struct s_list *set_a_node(char **buf, struct s_list *list)
 {
   if (!list)
@@ -86,7 +83,7 @@ void check_jeton(char **buf)
   return (list);
 }*/
 
-static void ft_check_buf(char *buf)
+/*static void ft_check_buf(char *buf)
 {
   int i; // c'est l'emplacement d'un caractere
   int j; // egale au nombre du caractere
@@ -120,7 +117,7 @@ static void ft_check_buf(char *buf)
       //list = set_a_node(&split_buf[i], list);
     i++;
   }
-}
+}*/
 
 static void  ft_open_file(char *name_file)
 {

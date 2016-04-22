@@ -19,9 +19,10 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <stdio.h>
+# define FILLIT_H
 
 # define MAX_CHAR 545
-# define FILLIT_H
+# define DEFAULT 4
 
 typedef struct  s_list
 {
@@ -34,5 +35,6 @@ typedef struct  s_list
 
 void  ft_check_buf(char *buf);
 void        ft_error(char *str);
+void  backtracking(struct s_list *list);
 
 #endif

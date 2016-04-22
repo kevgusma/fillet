@@ -35,7 +35,6 @@ void *check_jeton(char **buf) // buf == &split_buf[i]
       ft_error("Invalid # in file.");
     i++;
   }
-  printf("total = %d\n", total);
   if (total < 5)
     return (NULL);
 
@@ -71,11 +70,36 @@ struct s_list *set_a_node(char **buf, struct s_list *list)
       ft_error("malloc fail.");
     list->next = NULL;
     list->prev = NULL;
+    list->flag = 0;
     if ((list->jeton = check_jeton(buf)) == NULL)
       ft_error("Invalid jeton in file.");
     return (list);
   }
-  return (list);
+  if ((tmp = (struct s_list *)malloc(sizeof(struct s_list))) == NULL)
+    ft_error("malloc fail.");
+  tmp->next = list;
+  list->prev = tmp;
+  tmp->flag = 0;
+  if ((tmp->jeton = check_jeton(buf)) == NULL)
+    ft_error("Invalid jeton in file.");
+  return (tmp);
+}
+
+void  show_list(struct s_list *list)
+{
+  int i;
+
+  while (list)
+  {
+    i = 0;
+    while(list->jeton[i])
+    {
+      ft_putendl(list->jeton[i]);
+      i++;
+    }
+    ft_putendl("");
+    list = list->next;
+  }
 }
 
 void  ft_check_buf(char *buf)
@@ -84,7 +108,6 @@ void  ft_check_buf(char *buf)
   int j; // egale au nombre du caractere
   char **split_buf;
   struct s_list *list;
-  char **test;
 
   i = 0;
   j = 1;
@@ -109,8 +132,7 @@ void  ft_check_buf(char *buf)
     // sauf pour la derniere piece a part si le split a rajouter un '\n' a la fin
 
     if (i % 4 == 0) // modulo de ZERO = ZERO !!!!!!!!!!!!!!
-      test = check_jeton(&split_buf[i]);
-      //list = set_a_node(&split_buf[i], list);
+      list = set_a_node(&split_buf[i], list);
 
   /*  while (*test) // a utiliser avec precaution, ne pas oublier que LE pointeur peut etre NULL
     {
@@ -120,4 +142,6 @@ void  ft_check_buf(char *buf)
 
     i++;
   }
+  show_list(list);
+  backtracking(list);
 }

@@ -21,54 +21,7 @@ void        ft_error(char *str)
 // penser a faire une fonction qui sub une partie d'un tab
 // pour le mettre dans un autre
 // mettre cette fonction dans la libft
-/*
-void check_jeton(char **buf)
-{
-  int   nb_hashtag;
-  int   i;
-  int   j;
-  int   total;
 
-  nb_hashtag = 0;
-  total = 0;
-  i = 0;
-  while (i < 4)
-  {
-    j = 0;
-    while (buf[i][j])
-    {
-      if (buf[i][j] == '#')
-      {
-        if (j < 3 && buf[i][j + 1] && buf[i][j + 1] == '#')
-          total++;
-        if (i < 3 && buf[i + 1][j] && buf[i + 1][j] == '#')
-          total++;
-        if (j > 0 && buf[i][j - 1] && buf[i][j - 1] == '#')
-          total++;
-        if (i > 0 && buf[i - 1][j] && buf[i - 1][j] == '#')
-          total++;
-        nb_hashtag++;
-      }
-      j++;
-    }
-    if (nb_hashtag > 4)
-      ft_error("Invalid # in file.");
-    i++;
-  }
-  if (total > 5)
-    return (NULL);
-  printf("total = %d\n", total);
-
-    si un caractere sur la ligne : tester si les autres caracteres sont a i=
-    et a j+
-    si 4 caracteres sur la ligne : tester si aucun autre caractere dans le jeton
-    si # tester si suivant # OU ## si oui
-      option 1: + tester # en i= ou i++ et j+
-      option 2 : + tester si ## en i+ et j+
-    variable qui compte le nombre de #
-
-}
-*/
 /* struct s_list *set_a_node(char **buf, struct s_list *list)
 {
   if (!list)

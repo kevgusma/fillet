@@ -1,6 +1,6 @@
 #include "fillit.h"
 
-void *check_jeton(char **buf) // buf == &split_buf[i]
+void *check_jeton(char **buf, char id) // buf == &split_buf[i]
 // buf = a split_buf mais a partir de i
 {
   int   nb_hashtag;
@@ -45,6 +45,13 @@ void *check_jeton(char **buf) // buf == &split_buf[i]
   while (i < 4)
   {
     jeton[i] = ft_strdup(buf[i]);
+    j = 0;
+    while (jeton[i][j])
+    {
+      if (jeton[i][j] == '#')
+        jeton[i][j] = id;
+      j++;
+    }
     i++;
   }
   jeton[i] = NULL;
@@ -71,7 +78,8 @@ struct s_list *set_a_node(char **buf, struct s_list *list)
     list->next = NULL;
     list->prev = NULL;
     list->flag = 0;
-    if ((list->jeton = check_jeton(buf)) == NULL)
+    list->id = 'A';
+    if ((list->jeton = check_jeton(buf, 'A')) == NULL)
       ft_error("Invalid jeton in file.");
     return (list);
   }
@@ -80,7 +88,8 @@ struct s_list *set_a_node(char **buf, struct s_list *list)
   tmp->next = list;
   list->prev = tmp;
   tmp->flag = 0;
-  if ((tmp->jeton = check_jeton(buf)) == NULL)
+  tmp->id = list->id + 1;
+  if ((tmp->jeton = check_jeton(buf, list->id + 1)) == NULL)
     ft_error("Invalid jeton in file.");
   return (tmp);
 }

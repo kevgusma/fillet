@@ -112,8 +112,10 @@ void  brute_force(struct s_list *list, char **square)
       {
         if (set_a_jeton(square, list, i, j) == 0)
           list = list->next;
-        if (list == NULL) // liste circulaire soit on s'arrete 
+        if (list == NULL) // liste circulaire soit on s'arrete
           return ;
+        // pensez a calculer une taille ideale par rapport au nombre de piece
+        // une piece = 4 caracteres
         display(square);
       }
       j++;

@@ -39,26 +39,61 @@ static void display(char **square)
   ft_putendl("");
 }
 
+char **remove_jeton(char **square, char id)
+{
+  int i;
+  int j;
+
+  i = 0;
+  while (square[i])
+  {
+    j = 0;
+    while(square[i][j])
+    {
+      if (square[i][j] == id)
+        square[i][j] = '.';
+      j++;
+    }
+    i++;
+  }
+  return (square);
+}
+
 int set_a_jeton(char **square, struct s_list *list, int i, int j)
 {
+  int x;
+  int y;
+  int nb_id;
 
+  x = list->x;
+  y = list->y;
+  nb_id = 0;
   while (square[i])
   {
     ft_putendl("je passe");
     while (square[i][j])
     {
-      if (square[i][j] == '.' && list->y + i < 4 && list->x + j < 4 && list->jeton[list->y + i][list->x + j] != '.')
+      if (y < 4 && x < 4 && square[i][j] == '.' && list->jeton[y][x] != '.')
       {
         printf("i = %d et j = %d et y = %d et x = %d\n", i, j, list->y, list->x);
         square[i][j] = list->id;
+        nb_id++;
       }
     //  if (square[i][j] != '.' && list->jeton[list->y + i][list->x + j] != '.')
       //  return (-1);
         j++;
+        x++;
     }
     j = 0;
+    x = 0;
+    y++;
     i++;
   }
+  if (nb_id < 3)
+    {
+      square = remove_jeton(square, list->id);
+      return (-1);
+    }
   return (0);
 }
 
@@ -77,7 +112,7 @@ void  brute_force(struct s_list *list, char **square)
       {
         if (set_a_jeton(square, list, i, j) == 0)
           list = list->next;
-        if (list == NULL)
+        if (list == NULL) // liste circulaire soit on s'arrete 
           return ;
         display(square);
       }

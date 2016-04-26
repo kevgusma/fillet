@@ -143,6 +143,19 @@ void  show_list(struct s_list *list)
   }
 }
 
+struct s_list *simple_to_circular(struct s_list *list)
+{
+  struct s_list *start;
+
+  start = list;
+  while (list->next)
+    list = list->next;
+
+  start->prev = list;
+  list->next = start;
+  return (start);
+}
+
 void  ft_check_buf(char *buf)
 {
   int i; // c'est l'emplacement d'un caractere
@@ -184,8 +197,10 @@ void  ft_check_buf(char *buf)
     i++;
   }
   list = set_coord(list);
-  show_list(list);
-  show_list(list);
+  list = simple_to_circular(list);
+  //show_list(list);
+  //show_list(list); ne pas faire de show_list une fois quelle est circulaire
+  // sinon boucle infinie
   ft_putendl("ON PASSE AU BACKTRAKING");
   backtracking(list);
 }

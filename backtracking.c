@@ -41,14 +41,19 @@ static void display(char **square)
 
 int set_a_jeton(char **square, struct s_list *list, int i, int j)
 {
+
   while (square[i])
   {
+    ft_putendl("je passe");
     while (square[i][j])
     {
-      if (square[i][j] == '.' && list->jeton[i][j] != '.')
+      if (square[i][j] == '.' && list->y + i < 4 && list->x + j < 4 && list->jeton[list->y + i][list->x + j] != '.')
+      {
+        printf("i = %d et j = %d et y = %d et x = %d\n", i, j, list->y, list->x);
         square[i][j] = list->id;
-      if (square[i][j] != '.' && list->jeton[i][j] != '.')
-        return (-1);
+      }
+    //  if (square[i][j] != '.' && list->jeton[list->y + i][list->x + j] != '.')
+      //  return (-1);
         j++;
     }
     j = 0;
@@ -72,8 +77,9 @@ void  brute_force(struct s_list *list, char **square)
       {
         if (set_a_jeton(square, list, i, j) == 0)
           list = list->next;
+        if (list == NULL)
+          return ;
         display(square);
-
       }
       j++;
     }

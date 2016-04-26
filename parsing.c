@@ -94,6 +94,38 @@ struct s_list *set_a_node(char **buf, struct s_list *list)
   return (tmp);
 }
 
+struct s_list *set_coord(struct s_list *list)
+{
+  int i;
+  int j;
+  int init;
+  t_list *tmp;
+
+  tmp = list;
+  while (tmp != NULL)
+  {
+    i = 0;
+    init = 0;
+    while (tmp->jeton[i])
+    {
+      j = 0;
+      while (tmp->jeton[i][j])
+      {
+        if (tmp->jeton[i][j] != '.' && init == 0)
+        {
+          tmp->x = j;
+          tmp->y = i;
+          init = 1;
+        }
+        j++;
+      }
+      i++;
+    }
+    tmp = tmp->next;
+  }
+  return (list);
+}
+
 void  show_list(struct s_list *list)
 {
   int i;
@@ -151,6 +183,9 @@ void  ft_check_buf(char *buf)
 
     i++;
   }
+  list = set_coord(list);
   show_list(list);
+  show_list(list);
+  ft_putendl("ON PASSE AU BACKTRAKING");
   backtracking(list);
 }

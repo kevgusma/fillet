@@ -29,6 +29,8 @@ typedef struct  s_list
   char          **jeton;
   char          id;
   int           flag;
+  int           x;
+  int           y;
   struct s_list *next;
   struct s_list *prev;
 }               t_list;

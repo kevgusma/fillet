@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
+# define FILLIT_H
 
 # include <fcntl.h>
 # include <stdlib.h>
@@ -19,7 +20,6 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <stdio.h>
-# define FILLIT_H
 
 # define MAX_CHAR 545
 # define DEFAULT 4

@@ -94,7 +94,7 @@ struct s_list *set_a_node(char **buf, struct s_list *list)
   return (tmp);
 }
 
-struct s_list *set_coord(struct s_list *list)
+struct s_list *set_coord(struct s_list *list) // a refaire au moment de creer un maillon
 {
   int i;
   int j;

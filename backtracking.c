@@ -64,12 +64,16 @@ int set_a_jeton(char **square, struct s_list **list, int i, int j)
   int coord;
 
   coord = 0;
+  // segfault possible j negatif ou superieur a la map idem pour i
   while (coord < 4)
   {
     if (square[i][j] == '.')
       square[i][j] = (*list)->id;
     else
+    {
       square = remove_jeton(square, (*list)->id);
+      return (-1);
+    }
     coord++;
     i += (*list)->x[coord] - (*list)->x[coord - 1];
     j += (*list)->y[coord] - (*list)->y[coord - 1];
@@ -78,7 +82,7 @@ int set_a_jeton(char **square, struct s_list **list, int i, int j)
   return (0);
 }
 
-/*
+
 int check_list(struct s_list *list)
 {
   int i;
@@ -94,7 +98,7 @@ int check_list(struct s_list *list)
   }
   return (0);
 }
-
+/*
 void test_brute(struct s_list *list, char **square)
 {
   int i;
@@ -132,23 +136,25 @@ void  brute_force(struct s_list *list, char **square)
         continue ;
       }*/
         if (set_a_jeton(square, &list, i, j) == 0)
+        {
           list = list->next;
       //  printf("flag = %d\n", list->flag);
         // pensez a calculer une taille ideale par rapport au nombre de piece
         // une piece = 4 caracteres
-        display(square);
+          display(square);
+        }
       }
       j++;
     }
     i++;
   //  sleep(2);
   }
- /*if (check_list(list) == -1)
+ if (check_list(list) == -1)
   {
     ft_putendl("recursif");
-    test_brute(list, square);
-  // brute_force(list, square);
-}*/
+  //  test_brute(list, square);
+    brute_force(list, square);
+  }
 }
 
 void  backtracking(struct s_list *list)

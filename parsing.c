@@ -98,24 +98,25 @@ struct s_list *set_coord(struct s_list *list) // a refaire au moment de creer un
 {
   int i;
   int j;
-  int init;
+  int cmpt;
   t_list *tmp;
 
   tmp = list;
-  while (tmp != NULL)
+  while (tmp)
   {
     i = 0;
-    init = 0;
+    cmpt = 0;
     while (tmp->jeton[i])
     {
       j = 0;
+
       while (tmp->jeton[i][j])
       {
-        if (tmp->jeton[i][j] != '.' && init == 0)
+        if (tmp->jeton[i][j] != '.')
         {
-          tmp->x = j;
-          tmp->y = i;
-          init = 1;
+          (*tmp).x[cmpt] = i;
+          (*tmp).y[cmpt] = j;
+          cmpt++;
         }
         j++;
       }
@@ -137,6 +138,24 @@ void  show_list(struct s_list *list)
     {
       ft_putendl(list->jeton[i]);
       i++;
+    }
+    ft_putendl("");
+    list = list->next;
+  }
+}
+
+void show_coord(struct s_list *list)
+{
+  int cmpt;
+
+  while (list)
+  {
+    cmpt = 0;
+    printf("id de la piece %c\n", list->id);
+    while (cmpt < 4)
+    {
+      printf("coord %d , %d\n", list->x[cmpt], list->y[cmpt]);
+      cmpt++;
     }
     ft_putendl("");
     list = list->next;
@@ -197,6 +216,8 @@ void  ft_check_buf(char *buf)
     i++;
   }
   list = set_coord(list);
+  show_list(list);
+  show_coord(list);
   list = simple_to_circular(list);
   //show_list(list);
   //show_list(list); ne pas faire de show_list une fois quelle est circulaire

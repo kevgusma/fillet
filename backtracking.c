@@ -61,46 +61,24 @@ char **remove_jeton(char **square, char id)
 
 int set_a_jeton(char **square, struct s_list **list, int i, int j)
 {
-  int x;
-  int y;
-  int nb_id;
+  int coord;
 
-  x = (*list)->x;
-  y = (*list)->y;
-  nb_id = 0;
-  while (square[i])
+  coord = 0;
+  while (coord < 4)
   {
-    ft_putendl("je passe");
-    while (square[i][j])
-    {
-      if (y < 4 && x < 4 && square[i][j] == '.' && (*list)->jeton[y][x] != '.')
-      {
-        printf("i = %d et j = %d et y = %d et x = %d\n", i, j, (*list)->y, (*list)->x);
-        square[i][j] = (*list)->id;
-        nb_id++;
-      }
-
-    //  if (square[i][j] != '.' && list->jeton[list->y + i][list->x + j] != '.')
-      //  return (-1);
-        j++;
-        x++;
-    }
-    j = 0;
-    x = 0;
-    y++;
-    i++;
-  }
-  if (nb_id < 3)
-    {
+    if (square[i][j] == '.')
+      square[i][j] = (*list)->id;
+    else
       square = remove_jeton(square, (*list)->id);
-      return (-1);
-    }
-    printf("coucou");
+    coord++;
+    i += (*list)->x[coord] - (*list)->x[coord - 1];
+    j += (*list)->y[coord] - (*list)->y[coord - 1];
+  }
   (*list)->flag = 1;
-  printf("coucou2");
   return (0);
 }
 
+/*
 int check_list(struct s_list *list)
 {
   int i;
@@ -109,8 +87,8 @@ int check_list(struct s_list *list)
   while (i < 4)
   {
     printf("list flag = %d\n", list->flag);
-    //if (list->flag == 0)
-  //    return (-1);
+    if (list->flag == 0)
+     return (-1);
     list = list->next;
     i++;
   }
@@ -131,7 +109,7 @@ void test_brute(struct s_list *list, char **square)
     i++;
   }
   display(square);
-}
+}*/
 
 void  brute_force(struct s_list *list, char **square)
 {
@@ -146,17 +124,16 @@ void  brute_force(struct s_list *list, char **square)
     {
       if (square[i][j] == '.')
       {
-
+/*
         if (list->flag == 1)
         {
+          printf("on continue");
           list = list->next;
-          continue ;
-        }
+        continue ;
+      }*/
         if (set_a_jeton(square, &list, i, j) == 0)
           list = list->next;
-        printf("flag = %d\n", list->flag);
-        if (list == NULL) // liste circulaire soit on s'arrete
-          return ;
+      //  printf("flag = %d\n", list->flag);
         // pensez a calculer une taille ideale par rapport au nombre de piece
         // une piece = 4 caracteres
         display(square);
@@ -166,12 +143,12 @@ void  brute_force(struct s_list *list, char **square)
     i++;
   //  sleep(2);
   }
- if (check_list(list) == -1)
+ /*if (check_list(list) == -1)
   {
     ft_putendl("recursif");
     test_brute(list, square);
-//   brute_force(list, square);
- }
+  // brute_force(list, square);
+}*/
 }
 
 void  backtracking(struct s_list *list)

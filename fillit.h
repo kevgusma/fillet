@@ -29,14 +29,14 @@ typedef struct  s_list
   char          **jeton;
   char          id;
   int           flag;
-  int           x;
-  int           y;
+  int           x[4];
+  int           y[4];
   struct s_list *next;
   struct s_list *prev;
 }               t_list;
 
 void  ft_check_buf(char *buf);
-void        ft_error(char *str);
+void  ft_error(char *str);
 void  backtracking(struct s_list *list);
 
 #endif

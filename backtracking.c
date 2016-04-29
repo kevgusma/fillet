@@ -98,22 +98,6 @@ int check_list(struct s_list *list)
   }
   return (0);
 }
-/*
-void test_brute(struct s_list *list, char **square)
-{
-  int i;
-
-  i = 0;
-  while (i < 4)
-  {
-    printf("list flag = %d\n", list->flag);
-    //if (list->flag == 0)
-  //    return (-1);
-    list = list->next;
-    i++;
-  }
-  display(square);
-}*/
 
 void  brute_force(struct s_list *list, char **square)
 {
@@ -129,45 +113,32 @@ void  brute_force(struct s_list *list, char **square)
       if (square[i][j] == '.')
       {
 /*
-        if (list->flag == 1)
+        while (list->flag == 1)
         {
           printf("on continue");
           list = list->next;
-        continue ;
+          continue ;
       }*/
-        if (set_a_jeton(square, &list, i, j) == 0)
+        if (list->flag == 0 && set_a_jeton(square, &list, i, j) == 0)
         {
           list = list->next;
-      //  printf("flag = %d\n", list->flag);
-        // pensez a calculer une taille ideale par rapport au nombre de piece
-        // une piece = 4 caracteres
-          display(square);
+          display(square); // a enlever
         }
       }
       j++;
     }
     i++;
-  //  sleep(2);
   }
  if (check_list(list) == -1)
-  {
-    ft_putendl("recursif");
-  //  test_brute(list, square);
     brute_force(list, square);
-  }
 }
 
 void  backtracking(struct s_list *list)
 {
   char **square;
-//  int i;
 
   (void)*list;
   square = make_square(DEFAULT);
   display(square);
   brute_force(list, square);
-/*  if (set_a_jeton(list->jeton, &square) == -1)
-    ft_putendl("Solution non trouver");
-  else
-    display(square);*/
 }

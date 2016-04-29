@@ -35,6 +35,13 @@ typedef struct  s_list
   struct s_list *prev;
 }               t_list;
 
+typedef struct    s_fillit
+{
+  size_t          nb_total;
+  size_t          use_jeton;
+  struct s_list   *list;
+}                 t_fillit;
+
 void  ft_check_buf(char *buf);
 void  ft_error(char *str);
 void  backtracking(struct s_list *list);

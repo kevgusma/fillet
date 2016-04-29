@@ -18,60 +18,6 @@ void        ft_error(char *str)
   exit(1);
 }
 
-// penser a faire une fonction qui sub une partie d'un tab
-// pour le mettre dans un autre
-// mettre cette fonction dans la libft
-
-/* struct s_list *set_a_node(char **buf, struct s_list *list)
-{
-  if (!list)
-  {
-    if ((list = (struct s_list *)malloc(sizeof(struct s_list))) == NULL)
-      ft_error("malloc fail.");
-    list->next = NULL;
-    list->prev = NULL;
-    if ((list->jeton = check_jeton(buf)) == NULL)
-      ft_error("Invalid jeton in file.");
-  }
-  return (list);
-}*/
-
-/*static void ft_check_buf(char *buf)
-{
-  int i; // c'est l'emplacement d'un caractere
-  int j; // egale au nombre du caractere
-  char **split_buf;
-  struct s_list *list;
-
-  i = 0;
-  j = 1;
-  while (buf[i])
-  {
-    if (buf[i] != '#' && buf[i] != '.' && buf[i] != '\n')
-      ft_error("Invalid character in file.");
-// faire des test supplementaire pour le modulo
-    if ((j % 21) == 0 && (buf[i] != '\n' || buf[i - 1] != '\n')) // si c'est un '\n' on ne rentre pas dans cette condition
-      ft_error("file does not valid.");
-    j++;
-    i++;
-  }
-
-  split_buf = ft_strsplit(buf, '\n'); // fait un tab de toute les lignes
-  i = 0;
-  list = NULL;
-  while (split_buf[i])
-  {
-  //  ft_putendl(split_buf[i]);
-    // penser a verifier que les piece font bien 4 ligne suivit '\n'
-    // sauf pour la derniere piece a part si le split a rajouter un '\n' a la fin
-
-    if (i % 4 == 0) // modulo de ZERO = ZERO !!!!!!!!!!!!!!
-      check_jeton(&split_buf[i]);
-      //list = set_a_node(&split_buf[i], list);
-    i++;
-  }
-}*/
-
 static void  ft_open_file(char *name_file)
 {
   int     fd;

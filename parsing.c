@@ -15,6 +15,7 @@ void *check_jeton(char **buf, char id) // buf == &split_buf[i]
   while (i < 4)
   {
     j = 0;
+    /*** hashtag et total voir si les deux sont bien utile *****/
     while (buf[i][j]) // i = ligne et j = caractere
     {
       if (buf[i][j] == '#')
@@ -37,7 +38,7 @@ void *check_jeton(char **buf, char id) // buf == &split_buf[i]
   }
   if (total < 5)
     return (NULL);
-
+/**** couper a partir d'ici ****/
   if ((jeton = (char **)malloc(sizeof(char *) * 5)) == NULL)
     return (NULL);
 
@@ -109,7 +110,6 @@ struct s_list *set_coord(struct s_list *list) // a refaire au moment de creer un
     while (tmp->jeton[i])
     {
       j = 0;
-
       while (tmp->jeton[i][j])
       {
         if (tmp->jeton[i][j] != '.')
@@ -169,7 +169,6 @@ struct s_list *simple_to_circular(struct s_list *list)
   start = list;
   while (list->next)
     list = list->next;
-
   start->prev = list;
   list->next = start;
   return (start);
@@ -194,32 +193,19 @@ void  ft_check_buf(char *buf)
     j++;
     i++;
   }
-
   split_buf = ft_strsplit(buf, '\n'); // fait un tableau de toute les lignes de buf sans '\n'
   i = 0;
   list = NULL;
   while (split_buf[i])
   {
-  //  ft_putendl(split_buf[i]);
-    // penser a verifier que les piece font bien 4 ligne suivit '\n'
-    // sauf pour la derniere piece a part si le split a rajouter un '\n' a la fin
-
     if (i % 4 == 0) // modulo de ZERO = ZERO !!!!!!!!!!!!!!
       list = set_a_node(&split_buf[i], list);
-
-  /*  while (*test) // a utiliser avec precaution, ne pas oublier que LE pointeur peut etre NULL
-    {
-      ft_putendl(*test);
-      test++;
-    }*/
-
     i++;
   }
   list = set_coord(list);
   show_list(list);
   show_coord(list);
   list = simple_to_circular(list);
-  //show_list(list);
   //show_list(list); ne pas faire de show_list une fois quelle est circulaire
   // sinon boucle infinie
   ft_putendl("ON PASSE AU BACKTRAKING");

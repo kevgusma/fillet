@@ -23,6 +23,7 @@ static void  ft_open_file(char *name_file)
   int     fd;
   size_t  size;
   char    buf[MAX_CHAR + 2];
+  struct s_fillit   *fillit;
 
   if ((fd = open(name_file, O_RDONLY)) == -1)
     ft_error("file does not exist.");
@@ -35,6 +36,11 @@ static void  ft_open_file(char *name_file)
     ft_error("file does not valid. MODULO");
   buf[size + 1] = '\n';
   buf[size + 2] = '\0';
+
+  if ((fillit = (struct s_fillit *)malloc(sizeof(struct s_fillit))) == NULL)
+    ft_error("Malloc fail.");
+    fillit->nb_total = (size + 1) / 21;
+  printf("nombre de piece = %lu\n", fillit->nb_total);
   ft_check_buf(buf);
 }
 

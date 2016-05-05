@@ -12,22 +12,41 @@ void *check_jeton(char **buf, char id) // buf == &split_buf[i]
   nb_hashtag = 0;
   total = 0;
   i = 0;
-  while (i < 4)
+  ft_putendl("on commence a verifier une piece"); //
+  while (buf[i]) // avant (i < 4)
   {
     j = 0;
     /*** hashtag et total voir si les deux sont bien utile *****/
+    ft_putendl(buf[i]);
     while (buf[i][j]) // i = ligne et j = caractere
     {
+      ft_putchar(buf[i][j]);
       if (buf[i][j] == '#')
       {
+        ft_putendl("j < 3");
         if (j < 3 && buf[i][j + 1] && buf[i][j + 1] == '#')
+        {
+
           total++;
+        }
+        ft_putendl("i < 3");
         if (i < 3 && buf[i + 1][j] && buf[i + 1][j] == '#')
+        {
+
           total++;
+        }
+          ft_putendl("j > 0");
         if (j > 0 && buf[i][j - 1] && buf[i][j - 1] == '#')
+        {
+
           total++;
+        }
+        ft_putendl("i > 0");
         if (i > 0 && buf[i - 1][j] && buf[i - 1][j] == '#')
+        {
+
           total++;
+        }
         nb_hashtag++;
       }
       j++;
@@ -36,6 +55,7 @@ void *check_jeton(char **buf, char id) // buf == &split_buf[i]
       ft_error("Invalid # in file.");
     i++;
   }
+  ft_putendl("piece verfier"); //
   if (total < 5)
     return (NULL);
 /**** couper a partir d'ici ****/
@@ -72,6 +92,8 @@ struct s_list *set_a_node(char **buf, struct s_list *list)
 {
   struct s_list *tmp;
 
+  if (ft_sizetab(buf) != 4)
+    ft_error("Invalid jeton in file.");
   if (!list)
   {
     if ((list = (struct s_list *)malloc(sizeof(struct s_list))) == NULL)
@@ -174,7 +196,7 @@ struct s_list *simple_to_circular(struct s_list *list)
   return (start);
 }
 
-void  ft_check_buf(char *buf)
+struct s_list *ft_check_buf(char *buf)
 {
   int i; // c'est l'emplacement d'un caractere
   int j; // egale au nombre du caractere
@@ -193,15 +215,20 @@ void  ft_check_buf(char *buf)
     j++;
     i++;
   }
+  ft_putendl("check des caractere finis"); //
   split_buf = ft_strsplit(buf, '\n'); // fait un tableau de toute les lignes de buf sans '\n'
+  if (split_buf[0] == NULL) // test : faire un if qui contient split et la verif
+    ft_error("Invalid file.");
   i = 0;
   list = NULL;
   while (split_buf[i])
   {
+    ft_putendl("split_buf");
     if (i % 4 == 0) // modulo de ZERO = ZERO !!!!!!!!!!!!!!
       list = set_a_node(&split_buf[i], list);
     i++;
   }
+  ft_putendl("list finis"); //
   list = set_coord(list);
   show_list(list);
   show_coord(list);
@@ -209,5 +236,6 @@ void  ft_check_buf(char *buf)
   //show_list(list); ne pas faire de show_list une fois quelle est circulaire
   // sinon boucle infinie
   ft_putendl("ON PASSE AU BACKTRAKING");
-  backtracking(list);
+  //backtracking(list);
+  return (list);
 }

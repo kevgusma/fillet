@@ -6,7 +6,7 @@
 #    By: kevgusma <kevgusma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/21 15:46:50 by kevgusma          #+#    #+#              #
-#    Updated: 2016/02/15 12:10:13 by kevgusma         ###   ########.fr        #
+#    Updated: 2016/05/05 17:04:56 by kevgusma         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -26,7 +26,7 @@ SRC = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c	\
 		ft_putstr.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c ft_putstr_fd.c \
 		ft_putendl_fd.c ft_strrint.c \
 		ft_perror.c ft_strnbr.c ft_strsplit.c ft_strsrch.c ft_strcat.c \
-		ft_putnbr_fd.c ft_strint.c ft_free.c ft_putnbr_base.c
+		ft_putnbr_fd.c ft_strint.c ft_free.c ft_putnbr_base.c ft_sizetab.c
 
 OBJ = ft_memset.o ft_bzero.o ft_memcpy.o ft_memccpy.o ft_memmove.o  \
 		ft_memchr.o ft_memcmp.o ft_strlen.o ft_strdup.o ft_strcpy.o       \
@@ -40,7 +40,7 @@ OBJ = ft_memset.o ft_bzero.o ft_memcpy.o ft_memccpy.o ft_memmove.o  \
 		ft_putstr.o ft_putendl.o ft_putnbr.o ft_putchar_fd.o ft_putstr_fd.o \
 		ft_putendl_fd.o ft_strrint.o \
 		ft_perror.o ft_strnbr.o ft_strsplit.o ft_strsrch.o ft_strcat.o \
-		ft_putnbr_fd.o ft_strint.o ft_free.o ft_putnbr_base.o
+		ft_putnbr_fd.o ft_strint.o ft_free.o ft_putnbr_base.o ft_sizetab.o
 
 .PHONY: all clean fclean re
 

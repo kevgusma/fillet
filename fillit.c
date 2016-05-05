@@ -20,9 +20,9 @@ void        ft_error(char *str)
 
 static void  ft_open_file(char *name_file)
 {
-  int     fd;
-  size_t  size;
-  char    buf[MAX_CHAR + 2];
+  int               fd;
+  size_t            size;
+  char              buf[MAX_CHAR + 2];
   struct s_fillit   *fillit;
 
   if ((fd = open(name_file, O_RDONLY)) == -1)
@@ -41,7 +41,9 @@ static void  ft_open_file(char *name_file)
     ft_error("Malloc fail.");
     fillit->nb_total = (size + 1) / 21;
   printf("nombre de piece = %lu\n", fillit->nb_total);
-  ft_check_buf(buf);
+  fillit->list = ft_check_buf(buf);
+  ft_putendl("parsing finis");
+  backtracking(fillit->list); // envoyer fillit en param
 }
 
 static void  ft_usage(char *name_file)

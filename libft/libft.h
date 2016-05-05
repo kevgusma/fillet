@@ -76,5 +76,6 @@ int		ft_strnbr(char *str);
 size_t	ft_strint(const char *str, char c);
 void	ft_free(char *str);
 void	ft_putnbr_base(size_t nbr, char *base);
+size_t	ft_sizetab(char **s);
 
 #endif

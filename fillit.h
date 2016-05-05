@@ -42,7 +42,7 @@ typedef struct    s_fillit
   struct s_list   *list;
 }                 t_fillit;
 
-void  ft_check_buf(char *buf);
+struct s_list *ft_check_buf(char *buf);
 void  ft_error(char *str);
 void  backtracking(struct s_list *list);
 
